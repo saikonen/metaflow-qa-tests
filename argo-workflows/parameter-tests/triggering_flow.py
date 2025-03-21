@@ -1,11 +1,12 @@
 from metaflow import step, FlowSpec
 from payloads import EVENT_NAME, PAYLOADS
 
+
 class TriggerArgoParamsTest(FlowSpec):
     @step
     def start(self):
         from metaflow.integrations import ArgoEvent
-        
+
         # trigger events
         for idx, pl in enumerate(PAYLOADS):
             ArgoEvent(EVENT_NAME).publish({"payload_index": idx, **pl})
