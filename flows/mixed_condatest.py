@@ -1,7 +1,7 @@
 from metaflow import FlowSpec, step, conda_base, kubernetes
 
 
-@conda_base(libraries={"pandas": "1.5.2"}, python="3.8.0")
+@conda_base(libraries={"pandas": "1.5.2"}, python="3.11")
 class MixedCondaFlow(FlowSpec):
     @step
     def start(self):
