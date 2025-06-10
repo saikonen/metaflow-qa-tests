@@ -3,7 +3,7 @@
 ## Install requirements
 
 ```sh
-pip install -r requirements.txt
+pip install .
 ```
 
 ## Setup
@@ -15,5 +15,5 @@ Make sure you have a working Metaflow installation that can be used to execute t
 use `pytest` to gather and run the individual tests. The following command will run many test cases in parallel with `pytest-xdist`
 
 ```sh
-pytest -n auto
+pytest -n auto --pyargs metaflow_qa_tests
 ```

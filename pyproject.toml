@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "metaflow-qa-tests"
 version = "0.1.0"
@@ -9,3 +13,6 @@ dependencies = [
     "pytest",
     "pytest-xdist"
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
