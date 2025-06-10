@@ -1,7 +1,7 @@
 from metaflow import FlowSpec, step, pypi_base
 
 
-@pypi_base(packages={"pandas": "1.5.2"}, python="3.8.0")
+@pypi_base(packages={"pandas": "1.5.2"}, python="3.11")
 class PyPIFlow(FlowSpec):
     @step
     def start(self):

@@ -1,0 +1,11 @@
+[project]
+name = "metaflow-qa-tests"
+version = "0.1.0"
+description = "QA test suite for metaflow"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "metaflow",
+    "pytest",
+    "pytest-xdist"
+]
