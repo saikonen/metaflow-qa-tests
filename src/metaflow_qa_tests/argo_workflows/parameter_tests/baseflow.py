@@ -12,6 +12,10 @@ class BaseParamsFlow(FlowSpec):
 
     param_e = Parameter(name="param-e", default=1.23, type=float)
 
+    param_f = Parameter(
+        name="param-f", default='{"a": 123}', type=JSONType
+    )  # for testing json serialization from string defaults
+
     # bookkeeping to make testing easier. these match the parameter names.
     param_defaults = {
         "param_a": "default value A",
@@ -19,6 +23,7 @@ class BaseParamsFlow(FlowSpec):
         "param-c": {"test": 1},
         "param-d": 123,
         "param-e": 1.23,
+        "param-f": {"a": 123},
     }
 
     @step
