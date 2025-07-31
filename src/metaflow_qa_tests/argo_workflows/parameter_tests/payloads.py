@@ -13,7 +13,7 @@ PAYLOADS = [
     },
     # {"param-b": ["http://example.com/test?a=123&b=test  and some values \"\' '' && testing! \\"]}, # This one is problematic.
     {"param_a": "Only supplied param_a"},
-    {},
+    {},  # Tests all default params
 ]
 
 EVENT_NAME = "params_test_event"
