@@ -49,3 +49,8 @@ class BaseParamsFlow(FlowSpec):
     @step
     def end(self):
         print("Done! 🏁")
+        # check for errors and raise
+        test_failure = getattr(self, "test_failure", None)
+
+        if test_failure is not None:
+            raise test_failure

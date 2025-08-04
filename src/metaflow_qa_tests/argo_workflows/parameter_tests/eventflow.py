@@ -7,7 +7,6 @@ from payloads import EVENT_NAME, PAYLOADS
 class EventParamFlow(BaseParamsFlow):
     payload_index = Parameter(name="payload_index", default=None, type=int)
 
-    @catch(var="test_failure")
     @step
     def end(self):
         # we do some validation on the parameter values against known payloads and default values
@@ -37,6 +36,12 @@ class EventParamFlow(BaseParamsFlow):
                     raise Exception(
                         f"Parameter {k} should have the default value {self.param_defaults[k]} instead of {v} as no value was provided in the payload"
                     )
+
+        # Also raise if start step evals produced an exception that was caught
+        test_failure = getattr(self, "test_failure", None)
+
+        if test_failure is not None:
+            raise test_failure
 
 
 if __name__ == "__main__":
