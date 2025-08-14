@@ -105,4 +105,10 @@ def wait_for_run_to_finish(run, timeout=120):
             % timeout
         )
 
+    # We record an exception but finish test flows in order to get a faster test result,
+    # instead of having to wait for a timeout
+    test_failure = getattr(run.data, "test_failure", None)
+    if test_failure is not None:
+        raise test_failure
+
     return run

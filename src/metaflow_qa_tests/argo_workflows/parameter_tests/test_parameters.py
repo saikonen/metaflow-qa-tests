@@ -91,5 +91,11 @@ def test_base_params(test_tags):
 
         run = wait_for_result(triggered_run)
         assert run.successful
+
+        # Also test supplying json-string parameter value through CLI
+        triggered_run = deployed_flow.trigger(param_b='["a"]', param_c='{"b": 123}')
+
+        run = wait_for_result(triggered_run)
+        assert run.successful
     finally:
         deployed_flow.delete()

@@ -1,5 +1,5 @@
 from baseflow import BaseParamsFlow
-from metaflow import trigger, step, Parameter
+from metaflow import trigger, step, Parameter, catch
 from payloads import EVENT_NAME, PAYLOADS
 
 
@@ -20,16 +20,28 @@ class EventParamFlow(BaseParamsFlow):
         params_dict = {
             k: getattr(self, k.replace("-", "_")) for k in self.param_defaults.keys()
         }
-        print("Testing event against known payloads")
+        print("Testing event against a known payload")
         pl = PAYLOADS[self.payload_index]  # pylint: disable=invalid-sequence-index
 
         for k, v in params_dict.items():
             if k in pl:
                 # param value needs to be from payload if provided
-                assert v == pl[k]
+                if v != pl[k]:
+                    raise Exception(
+                        f"Payload value does not match parameter value.\nParameter {k} has value {v} instead of {pl[k]} from the payload."
+                    )
             else:
-                # param value should be default
-                assert v == self.param_defaults[k]
+                # param value should be default if not provided in payload.
+                if v != self.param_defaults[k]:
+                    raise Exception(
+                        f"Parameter {k} should have the default value {self.param_defaults[k]} instead of {v} as no value was provided in the payload"
+                    )
+
+        # Also raise if start step evals produced an exception that was caught
+        test_failure = getattr(self, "test_failure", None)
+
+        if test_failure is not None:
+            raise test_failure
 
 
 if __name__ == "__main__":
