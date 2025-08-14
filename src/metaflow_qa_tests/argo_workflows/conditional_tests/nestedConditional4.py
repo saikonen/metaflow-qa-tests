@@ -47,7 +47,7 @@ class NestedConditionalFlow4(FlowSpec):
     @step
     def join_cd(self, inputs):
         for input in inputs:
-            print(input["test_value"])
+            print(input.test_value)
         self.next(self.end)
 
     @step

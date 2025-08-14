@@ -41,7 +41,7 @@ class NestedConditionalFlow5(FlowSpec):
     @step
     def join_work(self, inputs):
         for input in inputs:
-            print(input["test_value"])
+            print(input.test_value)
         self.next(self.end)
 
     @step

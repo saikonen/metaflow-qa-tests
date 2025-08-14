@@ -41,7 +41,7 @@ class NestedConditionalFlow3(FlowSpec):
     @step
     def join_c_or_d(self, inputs):
         for input in inputs:
-            print(input["test_value"])
+            print(input.test_value)
         self.next(self.end)
 
     @step
