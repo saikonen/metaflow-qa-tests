@@ -3,8 +3,6 @@ from metaflow import step, FlowSpec, card, Parameter
 
 # A conditional branch in a foreach split
 class NestedConditionalFlow3(FlowSpec):
-    first_branch = Parameter("first_condition", default="false")
-
     @card
     @step
     def start(self):
@@ -18,10 +16,13 @@ class NestedConditionalFlow3(FlowSpec):
     @step
     def split_work(self):
         print("Now in Branch B")
-        self.test_value = "Went through split_work"
+        if self.input % 2 == 0:
+            self.condition = "true"
+        else:
+            self.condition = "false"
 
         self.next(
-            {"true": self.branch_c, "false": self.branch_d}, condition="first_branch"
+            {"true": self.branch_c, "false": self.branch_d}, condition="condition"
         )
 
     @step

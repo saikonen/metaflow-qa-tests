@@ -4,8 +4,6 @@ from metaflow import step, FlowSpec, card, Parameter
 # A conditional branch in a foreach split with a diamond pattern.
 # This gets around the issue of current Argo foreach-join input-paths
 class NestedConditionalFlow6(FlowSpec):
-    first_branch = Parameter("first_condition", default="false")
-
     @card
     @step
     def start(self):
@@ -21,9 +19,13 @@ class NestedConditionalFlow6(FlowSpec):
     def split_work(self):
         print("Now in Branch B")
         self.test_value = "Went through split_work"
+        if self.input % 2 == 0:
+            self.condition = "true"
+        else:
+            self.condition = "false"
 
         self.next(
-            {"true": self.branch_c, "false": self.branch_d}, condition="first_branch"
+            {"true": self.branch_c, "false": self.branch_d}, condition="condition"
         )
 
     @step
