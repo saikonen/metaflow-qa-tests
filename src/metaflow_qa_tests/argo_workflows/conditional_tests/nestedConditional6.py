@@ -17,7 +17,7 @@ class NestedConditionalFlow6(FlowSpec):
 
     @step
     def split_work(self):
-        print("Now in Branch B")
+        print("Now in split_work")
         self.test_value = "Went through split_work"
         if self.input % 2 == 0:
             self.condition = "true"
