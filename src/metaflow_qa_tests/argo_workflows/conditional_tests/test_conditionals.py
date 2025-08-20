@@ -22,12 +22,10 @@ def test_tags(test_id):
         "conditionalFlow.py",
         "nestedConditional1.py",
         "nestedConditional2.py",
-        "nestedConditional3.py",
         "nestedConditional4.py",
         "nestedConditional5.py",
         "nestedConditional6.py",
         "nestedConditional7.py",
-        "nestedConditional8.py",
     ],
 )
 def test_conditional_flows(filename, test_tags, test_id):
@@ -51,3 +49,30 @@ def test_conditional_flows(filename, test_tags, test_id):
         if deployed_flow is not None:
             # Clean up deployed flows.
             deployed_flow.delete()
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "nestedConditional3.py",
+        "nestedConditional8.py",
+        "failingConditionalFlow.py",
+    ],
+)
+def test_failing_conditional_flows(filename, test_tags, test_id):
+    deployed_flow = None
+    try:
+        deploy_failed = False
+        deployed_flow = (
+            Deployer(flow_file=os.path.join(ROOT, filename))
+            .argo_workflows()
+            .create(tags=test_tags)
+        )
+    except Exception:
+        deploy_failed = True
+    finally:
+        if deployed_flow is not None:
+            # Clean up deployed flows.
+            deployed_flow.delete()
+
+    assert deploy_failed, "The deployment was expected to fail"
