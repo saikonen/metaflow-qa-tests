@@ -26,6 +26,7 @@ def test_tags(test_id):
         "nestedConditional5.py",
         "nestedConditional6.py",
         "nestedConditional7.py",
+        "recursiveConditional1.py",
     ],
 )
 def test_conditional_flows(filename, test_tags, test_id):
@@ -57,6 +58,7 @@ def test_conditional_flows(filename, test_tags, test_id):
         "nestedConditional3.py",
         "nestedConditional8.py",
         "failingConditionalFlow.py",
+        "recursiveConditional2.py",
     ],
 )
 def test_failing_conditional_flows(filename, test_tags, test_id):
