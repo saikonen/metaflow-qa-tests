@@ -1,6 +1,7 @@
 from metaflow import step, FlowSpec, card, Parameter
 
 
+# a recursive conditional inside a foreach, with a diamond pattern before the join (supported)
 class NestedRecursiveConditionalFlow1(FlowSpec):
     should_loop = Parameter("should_loop", default=True)
     max_recursion = Parameter("max_recursion", default=3)
