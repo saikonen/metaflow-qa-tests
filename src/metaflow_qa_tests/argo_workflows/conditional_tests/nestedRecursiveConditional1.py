@@ -63,6 +63,7 @@ class NestedRecursiveConditionalFlow1(FlowSpec):
 
     @step
     def join_c_or_d(self, inputs):
+        self.merge_artifacts(inputs)
         for input in inputs:
             print(input.test_value)
         self.next(self.end)
