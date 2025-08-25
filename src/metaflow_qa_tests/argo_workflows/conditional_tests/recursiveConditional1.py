@@ -10,7 +10,7 @@ class RecursiveConditionalFlow1(FlowSpec):
         print("Starting 👋")
 
         self.test_value = "start"
-        self.continue_loop = "loop" if self.should_loop else "break"
+        self.case = "A" if self.should_loop else "break"
         self.iterations = 0
 
         self.next(self.recursive_step)
@@ -21,15 +21,20 @@ class RecursiveConditionalFlow1(FlowSpec):
 
         self.test_value = "start"
 
-        if self.iterations < self.max_recursion:
+        if self.iterations <= self.max_recursion:
             self.iterations += 1
-            self.continue_loop = "loop"
+            self.case = "B" if self.case == "A" else "A"
         else:
-            self.continue_loop = "break"
+            self.case = "break"
 
+        print(f"Case is '{self.case}'")
         self.next(
-            {"break": self.branch_a, "loop": self.recursive_step},
-            condition="continue_loop",
+            {
+                "break": self.branch_a,
+                "A": self.recursive_step,
+                "B": self.recursive_step,
+            },
+            condition="case",
         )
 
     @step
