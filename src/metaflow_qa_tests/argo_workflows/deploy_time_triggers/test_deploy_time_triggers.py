@@ -90,7 +90,12 @@ def test_successful_trigger_on_finish_deployments(test_tags):
 
 def test_expected_failing_trigger_deployments(test_tags):
     # "filename",
-    filenames = ["ParamTestTriggerOnFinishFail1.py", "ParamTestTriggerOnFinishFail1.py"]
+    filenames = [
+        "ParamTestTriggerOnFinishFail1.py",
+        "ParamTestTriggerOnFinishFail1.py",
+        "ParamTestFail1.py",
+        "ParamTestFail2.py",
+    ]
     for filename in filenames:
         try:
             deployer = (
