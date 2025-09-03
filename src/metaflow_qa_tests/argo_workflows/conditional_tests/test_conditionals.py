@@ -31,6 +31,7 @@ def test_tags(test_id):
         "conditionalSkipFlow1.py",
         "conditionalSkipFlow2.py",
         "conditionalSkipFlow3.py",
+        "conditionalSkipFlow4.py",
     ],
 )
 def test_conditional_flows(filename, test_tags, test_id):
