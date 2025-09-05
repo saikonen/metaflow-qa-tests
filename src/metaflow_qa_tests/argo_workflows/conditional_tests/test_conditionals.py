@@ -28,6 +28,11 @@ def test_tags(test_id):
         "nestedConditional7.py",
         "recursiveConditional1.py",
         "nestedRecursiveConditional1.py",
+        "conditionalSkipFlow1.py",
+        "conditionalSkipFlow2.py",
+        "conditionalSkipFlow3.py",
+        "conditionalSkipFlow4.py",
+        "conditionalSkipFlow5.py",
     ],
 )
 def test_conditional_flows(filename, test_tags, test_id):
