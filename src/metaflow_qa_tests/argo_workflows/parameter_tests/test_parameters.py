@@ -96,7 +96,19 @@ def test_base_params(test_tags):
         # This should _not_ work!
         triggered_run = deployed_flow.trigger(param_b='["a"]', param_c='{"b": 123}')
 
-        run = wait_for_result(triggered_run, timeout=180)
-        assert not run.successful
+        raised = True
+        try:
+            # This will raise errors from the flow run if any.
+            fail_run = wait_for_result(triggered_run, timeout=180)
+            raised = False
+        except Exception as ex:
+            # We expect an error to be raised.
+            assert "is of the wrong type" in str(ex)
+
+        if not raised:
+            raise Exception(
+                "Run was supposed to fail when passing jsonstring parameters through deployer, as they are unsupported."
+            )
+
     finally:
         deployed_flow.delete()

@@ -95,11 +95,11 @@ def wait_for_runs_after_ts(
 def wait_for_run_to_finish(run, timeout=120):
     "Wait for a Run to finish"
     slept = 0
-    while not run.finished and slept < timeout:
+    while not run.finished_at and slept < timeout:
         slept += 10
         sleep(10)
 
-    if not run.finished:
+    if not run.finished_at:
         raise TimeoutError(
             "Triggered run did not finish in time. Waited for %s seconds for the run to finish"
             % timeout
