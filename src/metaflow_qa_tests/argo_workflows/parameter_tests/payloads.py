@@ -1,4 +1,4 @@
-PAYLOADS = [
+PURE_PAYLOADS = [
     {
         "param_a": "default value A",
         "param-b": ["a", "b"],
@@ -15,5 +15,13 @@ PAYLOADS = [
     {"param_a": "Only supplied param_a"},
     {},  # Tests all default params
 ]
+JSONSTR_PAYLOADS = [
+    {
+        "param-b": ["json", "serialized"],
+        "param-c": {"json-serialized": 1},
+    },  # meant to be json serialized before publishing
+]
+
+PAYLOADS = [*PURE_PAYLOADS, *JSONSTR_PAYLOADS]
 
 EVENT_NAME = "params_test_event"
