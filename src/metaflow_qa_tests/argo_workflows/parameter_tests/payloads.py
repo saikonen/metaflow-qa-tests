@@ -5,6 +5,9 @@ PURE_PAYLOADS = [
         "param-c": {"test": 1},
         "param-d": 123,
         "param-e": 1.23,
+        "param-opt": None,
+        "param-opttwo": "null",
+        "param-optthree": None,
     },  # default values but through payload.
     {"param_a": "custom payload A", "param-b": ["C", "E"]},
     {
