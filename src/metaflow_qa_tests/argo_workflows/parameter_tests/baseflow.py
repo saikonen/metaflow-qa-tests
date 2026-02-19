@@ -1,4 +1,3 @@
-import os
 from metaflow import step, FlowSpec, Parameter, JSONType, catch
 
 
