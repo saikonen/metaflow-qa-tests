@@ -5,6 +5,7 @@ PURE_PAYLOADS = [
         "param-c": {"test": 1},
         "param-d": 123,
         "param-e": 1.23,
+        "param-g": True,
         "param-opt": None,
         "param-opttwo": "null",
         "param-optthree": None,
@@ -13,6 +14,7 @@ PURE_PAYLOADS = [
     {
         "param_a": "http://example.com/test?a=123&b=test  and some values \"' '' && testing! \\",
         "param-b": [""],
+        "param-g": False,
     },
     # {"param-b": ["http://example.com/test?a=123&b=test  and some values \"\' '' && testing! \\"]}, # This one is problematic.
     {"param_a": "Only supplied param_a"},

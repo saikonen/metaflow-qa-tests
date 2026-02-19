@@ -16,6 +16,8 @@ class BaseParamsFlow(FlowSpec):
         name="param-f", default='{"a": 123}', type=JSONType
     )  # for testing json serialization from string defaults
 
+    param_g = Parameter(name="param-g", default=True, type=bool)
+
     param_opt = Parameter(name="param-opt", required=False)
     param_opttwo = Parameter(name="param-opttwo", default="null")
     param_optthree = Parameter(name="param-optthree", default=None)
@@ -27,6 +29,7 @@ class BaseParamsFlow(FlowSpec):
         "param-d": 123,
         "param-e": 1.23,
         "param-f": {"a": 123},
+        "param-g": True,
         "param-opt": None,
         "param-opttwo": "null",
         "param-optthree": None,

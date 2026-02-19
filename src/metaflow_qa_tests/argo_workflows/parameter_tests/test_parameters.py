@@ -112,3 +112,19 @@ def test_base_params(test_tags):
 
     finally:
         deployed_flow.delete()
+
+
+def test_protected(test_tags):
+    raised = True
+    try:
+        deployed_flow = (
+            Deployer(flow_file=os.path.join(ROOTPATH, "notallowedparamflow.py"))
+            .argo_workflows()
+            .create(tags=test_tags)
+        )
+        raised = False
+    except Exception as ex:
+        pass
+
+    if not raised:
+        raise Exception("Deploy was supposed to fail due to restricted parameter name.")
