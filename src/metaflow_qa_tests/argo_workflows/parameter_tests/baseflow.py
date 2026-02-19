@@ -1,3 +1,4 @@
+import os
 from metaflow import step, FlowSpec, Parameter, JSONType, catch
 
 
@@ -16,6 +17,9 @@ class BaseParamsFlow(FlowSpec):
         name="param-f", default='{"a": 123}', type=JSONType
     )  # for testing json serialization from string defaults
 
+    param_opt = Parameter(name="param-opt", required=False)
+    param_opttwo = Parameter(name="param-opttwo", default="null")
+    param_optthree = Parameter(name="param-optthree", default=None)
     # bookkeeping to make testing easier. these match the parameter names.
     param_defaults = {
         "param_a": "default value A",
@@ -24,6 +28,9 @@ class BaseParamsFlow(FlowSpec):
         "param-d": 123,
         "param-e": 1.23,
         "param-f": {"a": 123},
+        "param-opt": None,
+        "param-opttwo": "null",
+        "param-optthree": None,
     }
 
     @catch(var="test_failure")
