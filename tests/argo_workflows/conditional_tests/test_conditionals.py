@@ -1,6 +1,6 @@
 import pytest
 from metaflow import Deployer
-from ..utils import (
+from argo_workflows.utils import (
     wait_for_run_to_finish,
     wait_for_run,
 )
