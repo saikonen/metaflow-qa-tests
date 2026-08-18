@@ -1,6 +1,6 @@
 import pytest
 from metaflow import Deployer
-from ..utils import (
+from argo_workflows.utils import (
     wait_for_run_to_finish,
     wait_for_run,
 )
@@ -87,3 +87,29 @@ def test_failing_conditional_flows(filename, test_tags, test_id):
             deployed_flow.delete()
 
     assert deploy_failed, "The deployment was expected to fail"
+
+
+def test_bug_conditional_flows(test_tags, test_id):
+    deployed_flow = None
+    try:
+        deployed_flow = (
+            Deployer(flow_file=os.path.join(ROOT, "reproduce_join_bug.py"))
+            .argo_workflows()
+            .create(tags=test_tags)
+        )
+
+        deployed_flow.trigger()
+
+        run = wait_for_run(deployed_flow.flow_name, ns=test_id)
+
+        finished_run = wait_for_run_to_finish(run, timeout=300)
+
+        assert not finished_run.successful
+
+        # the inner join step should NOT have started executing
+        assert not any(step.id == "sub_join" for step in run)
+
+    finally:
+        if deployed_flow is not None:
+            # Clean up deployed flows.
+            deployed_flow.delete()

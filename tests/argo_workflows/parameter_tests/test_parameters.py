@@ -1,7 +1,7 @@
 import pytest
 from metaflow import Deployer
-from .payloads import PAYLOADS
-from ..utils import (
+from argo_workflows.parameter_tests.payloads import PAYLOADS
+from argo_workflows.utils import (
     wait_for_result,
     wait_for_run,
     wait_for_run_to_finish,

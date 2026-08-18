@@ -63,7 +63,6 @@ def test_successful_trigger_on_finish_deployments(test_tags):
             "ParamTestTriggerOnFinish6.py",
             "deploytime_project.test.custombranch.DeployTimeTriggerParams",
         ),
-        # ("ParamTestTriggerOnFinish7.py", "another_project.test.custombranch.DeployTimeTriggerParams"),
     ]
     deployers = []
     try:
@@ -92,7 +91,7 @@ def test_expected_failing_trigger_deployments(test_tags):
     # "filename",
     filenames = [
         "ParamTestTriggerOnFinishFail1.py",
-        "ParamTestTriggerOnFinishFail1.py",
+        "ParamTestTriggerOnFinishFail2.py",
         "ParamTestFail1.py",
         "ParamTestFail2.py",
     ]

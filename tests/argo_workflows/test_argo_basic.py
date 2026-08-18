@@ -1,6 +1,6 @@
 import pytest
 from metaflow import Deployer
-from .utils import wait_for_run, wait_for_run_to_finish
+from argo_workflows.utils import wait_for_run, wait_for_run_to_finish
 import os
 
 FLOWS_ROOT = os.path.join(os.path.dirname(__file__), "..", "flows")
